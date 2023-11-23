@@ -13,9 +13,51 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: new ThemeData(
-          scaffoldBackgroundColor: Color.fromARGB(255, 46, 53, 50)),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 46, 53, 50)),
+      home: const TopMenu(),
+    );
+  }
+}
+
+class TopMenu extends StatelessWidget {
+  const TopMenu({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 46 + 20, 53 + 20, 50 + 20),
+        title: const Text(
+          'Thomas Bioren',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        actions: const <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Text(
+              'Home',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 50.0),
+            child: Text(
+              'Projects',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: MyHomePage(title: 'Thomas Bioren'),
     );
   }
 }
@@ -39,28 +81,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46 + 50, 53 + 50, 50 + 50),
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -68,13 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Padding(
-              padding: EdgeInsets.all(120.0),
+              padding: EdgeInsets.all(50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(0),
                     child: AutoSizeText(
                       'Hi I\'m',
                       maxLines: 1,
@@ -85,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(0),
                     child: AutoSizeText(
                       'Thomas Bioren',
                       maxLines: 1,
@@ -99,16 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_G0N9CN_iM6-kvF6qpZFibDRcR-t25KVQQA&usqp=CAU'),
+            Padding(
+              padding: const EdgeInsets.all(50),
+              child: Image.network(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_G0N9CN_iM6-kvF6qpZFibDRcR-t25KVQQA&usqp=CAU'),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
