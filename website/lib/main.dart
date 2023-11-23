@@ -8,32 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Thomas Bioren',
-      theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 46, 53, 50)),
-      home: const MainApp(),
-    );
-  }
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: topMenu(),
-      body: const MyHomePage(title: 'Thomas Bioren'),
-    );
-  }
-
-  AppBar topMenu() {
+  static AppBar topMenu(var boldNum) {
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 46 + 20, 53 + 20, 50 + 20),
       title: const Text(
@@ -42,26 +17,71 @@ class MainApp extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      actions: const <Widget>[
+      actions: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsets.only(right: 10.0),
           child: Text(
             'Home',
             style: TextStyle(
+              fontWeight: boldNum == 0 ? FontWeight.bold : FontWeight.normal,
               color: Colors.white,
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right: 50.0),
+          padding: const EdgeInsets.only(right: 50.0),
           child: Text(
             'Projects',
             style: TextStyle(
+              fontWeight: boldNum == 1 ? FontWeight.bold : FontWeight.normal,
               color: Colors.white,
             ),
           ),
         ),
       ],
+    );
+  }
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/projects',
+      routes: {
+        '/': (context) => const HomeRoute(),
+        '/projects': (context) => const ProjectRoute(),
+      },
+      title: 'Thomas Bioren',
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 46, 53, 50)),
+    );
+  }
+}
+
+class HomeRoute extends StatelessWidget {
+  const HomeRoute({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyApp.topMenu(0),
+      body: const MyHomePage(title: 'Thomas Bioren'),
+    );
+  }
+}
+
+class ProjectRoute extends StatelessWidget {
+  const ProjectRoute({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyApp.topMenu(1),
+      body: const MyHomePage(title: 'Projects'),
     );
   }
 }
