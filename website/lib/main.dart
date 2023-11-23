@@ -12,52 +12,56 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Thomas Bioren',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromARGB(255, 46, 53, 50)),
-      home: const TopMenu(),
+      home: const MainApp(),
     );
   }
 }
 
-class TopMenu extends StatelessWidget {
-  const TopMenu({
+class MainApp extends StatelessWidget {
+  const MainApp({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46 + 20, 53 + 20, 50 + 20),
-        title: const Text(
-          'Thomas Bioren',
-          style: TextStyle(
-            color: Colors.white,
+      appBar: topMenu(),
+      body: const MyHomePage(title: 'Thomas Bioren'),
+    );
+  }
+
+  AppBar topMenu() {
+    return AppBar(
+      backgroundColor: const Color.fromARGB(255, 46 + 20, 53 + 20, 50 + 20),
+      title: const Text(
+        'Thomas Bioren',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      actions: const <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 10.0),
+          child: Text(
+            'Home',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
-        actions: const <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Text(
-              'Home',
-              style: TextStyle(
-                color: Colors.white,
-              ),
+        Padding(
+          padding: EdgeInsets.only(right: 50.0),
+          child: Text(
+            'Projects',
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(right: 50.0),
-            child: Text(
-              'Projects',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: MyHomePage(title: 'Thomas Bioren'),
+        ),
+      ],
     );
   }
 }
