@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
+        // Home hyperlink
         Padding(
           padding: const EdgeInsets.only(right: 10.0),
           child: MouseRegion(
@@ -25,10 +26,6 @@ class MyApp extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).popUntil(ModalRoute.withName('/'));
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const HomeRoute()),
-                // );
               },
               child: Text(
                 'Home',
@@ -41,26 +38,46 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        // Projects hyperlink
         Padding(
-          padding: const EdgeInsets.only(right: 50.0),
+          padding: const EdgeInsets.only(right: 10.0),
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () {
-                if (!(ModalRoute.of(context)?.settings.name == '/projects')) {
-                  print(ModalRoute.of(context)?.settings.name);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProjectRoute()),
-                  );
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProjectRoute()),
+                );
               },
               child: Text(
                 'Projects',
                 style: TextStyle(
                   fontWeight:
                       boldNum == 1 ? FontWeight.bold : FontWeight.normal,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+        // Contact hyperlink
+        Padding(
+          padding: const EdgeInsets.only(right: 50.0),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ContactRoute()),
+                );
+              },
+              child: Text(
+                'Contact',
+                style: TextStyle(
+                  fontWeight:
+                      boldNum == 2 ? FontWeight.bold : FontWeight.normal,
                   color: Colors.white,
                 ),
               ),
@@ -79,6 +96,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeRoute(),
         '/projects': (context) => const ProjectRoute(),
+        '/contact': (context) => const ContactRoute(),
       },
       title: 'Thomas Bioren',
       theme: ThemeData(
@@ -111,7 +129,21 @@ class ProjectRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyApp.topMenu(1, context),
-      body: const MyHomePage(title: 'Projects'),
+      body: const ProjectsPage(),
+    );
+  }
+}
+
+class ContactRoute extends StatelessWidget {
+  const ContactRoute({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyApp.topMenu(2, context),
+      body: const MyHomePage(title: 'Contact'),
     );
   }
 }
@@ -132,6 +164,36 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class ProjectsPage extends StatelessWidget {
+  const ProjectsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              AutoSizeText(
+                'Projects I\'ve Done:',
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
