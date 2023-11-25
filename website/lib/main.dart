@@ -20,40 +20,49 @@ class MyApp extends StatelessWidget {
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 10.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).popUntil(ModalRoute.withName('/'));
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const HomeRoute()),
-              // );
-            },
-            child: Text(
-              'Home',
-              style: TextStyle(
-                fontWeight: boldNum == 0 ? FontWeight.bold : FontWeight.normal,
-                color: Colors.white,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const HomeRoute()),
+                // );
+              },
+              child: Text(
+                'Home',
+                style: TextStyle(
+                  fontWeight:
+                      boldNum == 0 ? FontWeight.bold : FontWeight.normal,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 50.0),
-          child: GestureDetector(
-            onTap: () {
-              if (!(ModalRoute.of(context)?.settings.name == '/projects')) {
-                print(ModalRoute.of(context)?.settings.name);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProjectRoute()),
-                );
-              }
-            },
-            child: Text(
-              'Projects',
-              style: TextStyle(
-                fontWeight: boldNum == 1 ? FontWeight.bold : FontWeight.normal,
-                color: Colors.white,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                if (!(ModalRoute.of(context)?.settings.name == '/projects')) {
+                  print(ModalRoute.of(context)?.settings.name);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProjectRoute()),
+                  );
+                }
+              },
+              child: Text(
+                'Projects',
+                style: TextStyle(
+                  fontWeight:
+                      boldNum == 1 ? FontWeight.bold : FontWeight.normal,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
