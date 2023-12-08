@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
   runApp(const MyApp());
@@ -101,6 +107,7 @@ class MyApp extends StatelessWidget {
       title: 'Thomas Bioren',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 46, 53, 50),
+        splashColor: Colors.transparent,
       ),
     );
   }
@@ -143,7 +150,107 @@ class ContactRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyApp.topMenu(2, context),
-      body: const MyHomePage(title: 'Contact'),
+      body: const ContactPage(),
+    );
+  }
+}
+
+class ContactPage extends StatelessWidget {
+  const ContactPage({super.key});
+
+  get followLink => null;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(128.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // GitHub Link
+          Expanded(
+            child: InkWell(
+              onTap: () {
+                final url = Uri.parse('https://www.github.com/tbioren');
+                launchUrl(url);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/githubLogo.png',
+                    width: 128,
+                    height: 128,
+                  ),
+                  const AutoSizeText(
+                    '@tbioren',
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2,
+                    style: TextStyle(color: Colors.lightBlueAccent),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // LinkedIn Link
+          Expanded(
+            child: InkWell(
+              onTap: () {
+                final url = Uri.parse(
+                    'https://www.linkedin.com/in/thomas-bioren-7124b4254/');
+                launchUrl(url);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/linkedinLogo.png',
+                    width: 128,
+                    height: 128,
+                  ),
+                  const AutoSizeText(
+                    'Thomas Bioren',
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2,
+                    style: TextStyle(color: Colors.lightBlueAccent),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // Email Link
+          Expanded(
+            child: InkWell(
+              onTap: () {
+                final url = Uri.parse('mailto:biorentr@rose-hulman.edu');
+                launchUrl(url);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/emailLogo.svg',
+                    width: 128,
+                    height: 128,
+                  ),
+                  const AutoSizeText(
+                    'biorentr@rose-hulman.edu',
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2,
+                    style: TextStyle(color: Colors.lightBlueAccent),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -240,8 +347,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(50),
-              child: Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_G0N9CN_iM6-kvF6qpZFibDRcR-t25KVQQA&usqp=CAU'),
+              child: Image.asset('assets/images/placeholderPhoto.jpg'),
             ),
           ],
         ),
