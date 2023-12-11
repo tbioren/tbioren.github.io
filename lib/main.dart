@@ -158,94 +158,101 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool wideScreen =
+        MediaQuery.sizeOf(context).width > MediaQuery.sizeOf(context).height;
     return Padding(
-      padding: const EdgeInsets.all(128.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // GitHub Link
-          Expanded(
-            child: InkWell(
-              onTap: () {
-                final url = Uri.parse('https://www.github.com/tbioren');
-                launchUrl(url);
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/githubLogo.png',
-                    width: 128,
-                    height: 128,
-                  ),
-                  const AutoSizeText(
-                    '@tbioren',
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 2,
-                    style: TextStyle(color: Colors.lightBlueAccent),
-                  ),
-                ],
+      padding: const EdgeInsets.all(0.0),
+      child: Align(
+        alignment: Alignment.center,
+        child: Flex(
+          direction: wideScreen ? Axis.horizontal : Axis.vertical,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // GitHub Link
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  final url = Uri.parse('https://www.github.com/tbioren');
+                  launchUrl(url);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/githubLogo.png',
+                      width: 128,
+                      height: 128,
+                    ),
+                    const AutoSizeText(
+                      '@tbioren',
+                      textAlign: TextAlign.center,
+                      textScaleFactor: 2,
+                      style: TextStyle(color: Colors.lightBlueAccent),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
 
-          // LinkedIn Link
-          Expanded(
-            child: InkWell(
-              onTap: () {
-                final url = Uri.parse(
-                    'https://www.linkedin.com/in/thomas-bioren-7124b4254/');
-                launchUrl(url);
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/linkedinLogo.png',
-                    width: 128,
-                    height: 128,
-                  ),
-                  const AutoSizeText(
-                    'Thomas Bioren',
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 2,
-                    style: TextStyle(color: Colors.lightBlueAccent),
-                  ),
-                ],
+            // LinkedIn Link
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  final url = Uri.parse(
+                      'https://www.linkedin.com/in/thomas-bioren-7124b4254/');
+                  launchUrl(url);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/linkedinLogo.png',
+                      width: 128,
+                      height: 128,
+                    ),
+                    const AutoSizeText(
+                      'Thomas Bioren',
+                      textAlign: TextAlign.center,
+                      textScaleFactor: 2,
+                      style: TextStyle(color: Colors.lightBlueAccent),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
 
-          // Email Link
-          Expanded(
-            child: InkWell(
-              onTap: () {
-                final url = Uri.parse('mailto:biorentr@rose-hulman.edu');
-                launchUrl(url);
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/emailLogo.svg',
-                    width: 128,
-                    height: 128,
-                  ),
-                  const AutoSizeText(
-                    'biorentr@rose-hulman.edu',
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 2,
-                    style: TextStyle(color: Colors.lightBlueAccent),
-                  ),
-                ],
+            // Email Link
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  final url = Uri.parse('mailto:biorentr@rose-hulman.edu');
+                  launchUrl(url);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/emailLogo.svg',
+                      width: 128,
+                      height: 128,
+                    ),
+                    const AutoSizeText(
+                      'biorentr@rose-hulman.edu',
+                      textAlign: TextAlign.center,
+                      textScaleFactor: 2,
+                      style: TextStyle(color: Colors.lightBlueAccent),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -302,11 +309,14 @@ class ProjectsPage extends StatelessWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    bool wideScreen =
+        MediaQuery.sizeOf(context).width > MediaQuery.sizeOf(context).height;
     return Scaffold(
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Row(
+        child: Flex(
+          direction: wideScreen ? Axis.horizontal : Axis.vertical,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Padding(
@@ -318,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: EdgeInsets.all(0),
                     child: AutoSizeText(
-                      'Hi I\'m',
+                      'Hi, I\'m',
                       maxLines: 1,
                       style: TextStyle(
                         color: Colors.white,
