@@ -1,7 +1,7 @@
 [
     {
         "title": "Bitstream Evolution",
-        "link:": "https://evolvablehardware.org/",
+        "link": "https://evolvablehardware.org/",
         "description": "Researching evolution of bitstreams on FPGAs to achieve a desired output",
         "tags": ["Research", "Python", "Linux"]
     },

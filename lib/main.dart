@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:website/project.dart';
 
 void main() {
   runApp(const MyApp());
@@ -132,7 +137,7 @@ class ProjectRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyApp.topMenu(1, context),
-      body: const ProjectsPage(),
+      body: ProjectsPage(),
     );
   }
 }
@@ -161,7 +166,7 @@ class ContactPage extends StatelessWidget {
     bool wideScreen =
         MediaQuery.sizeOf(context).width > MediaQuery.sizeOf(context).height;
     return Padding(
-      padding: const EdgeInsets.all(0.0),
+      padding: const EdgeInsets.all(32.0),
       child: Align(
         alignment: Alignment.center,
         child: Flex(
@@ -276,32 +281,50 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class ProjectsPage extends StatelessWidget {
+class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
 
   @override
+  _ProjectsState createState() => _ProjectsState();
+}
+
+class _ProjectsState extends State<ProjectsPage> {
+  List<Project> _projects = List<Project>.empty(growable: true);
+  Future fetchProjects() async {
+    final String response = await rootBundle.loadString('data/projects.json');
+    final input = await json.decode(response);
+    var projects = List<Project>.empty(growable: true);
+    for (var p in input) {
+      projects.add(Project.fromJson(p));
+    }
+    return projects;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProjects().then((value) {
+      setState(() {
+        _projects.addAll(value);
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              AutoSizeText(
-                'Projects I\'ve Done:',
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                ),
+    return Scaffold(
+      body: ListView.builder(
+          itemCount: _projects.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Column(
+                children: <Widget>[
+                  Text(_projects[index].title),
+                  Text(_projects[index].description),
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }
