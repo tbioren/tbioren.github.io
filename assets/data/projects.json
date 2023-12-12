@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Bitstream Evolution",
+        "link:": "https://evolvablehardware.org/",
+        "description": "Researching evolution of bitstreams on FPGAs to achieve a desired output",
+        "tags": ["Research", "Python", "Linux"]
+    },
+    {
+        "title": "Genetic Algorithm Research Project",
+        "link": "https://github.com/tbioren/S23_R301",
+        "description": "A research project that explores using different genetic selection algorithms and selection methods to mutate a \"chromosome\" to a desired state.",
+        "tags": ["Java", "Research", "Rose-Hulman"]
+    },
+    {
+        "title": "MENACE",
+        "link": "https://github.com/tbioren/MENACE",
+        "description": "Matchbox Educatable Naughts And Crosses Engine (MENACE) is a fun program that learns how to play tick-tack-toe.",
+        "tags": ["Java"]
+    },
+    {
+        "title": "Personal Website",
+        "link": "https://github.com/tbioren/tbioren.github.io",
+        "description": "A fun project to learn Flutter and Dart",
+        "tags": ["Flutter", "Dart", "Web Design"]
+    },
+    {
+        "title": "CSSE220 Homework Assigment",
+        "link": "https://github.com/tbioren/Constellation",
+        "description": "An extra-credit assignment I created for the Rose-Hulman CSSE department.",
+        "tags": ["Java", "Rose-Hulman"]
+    }
+]
