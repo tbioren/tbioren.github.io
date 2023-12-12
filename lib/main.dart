@@ -318,8 +318,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Flex(
           direction: wideScreen ? Axis.horizontal : Axis.vertical,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Padding(
+          children: const <Widget>[
+            Padding(
               padding: EdgeInsets.all(50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -352,8 +352,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(50),
-              child: Image.asset('assets/images/placeholderPhoto.jpg'),
+              padding: EdgeInsets.all(80),
+              child: CircleAvatar(
+                radius: 100,
+                backgroundImage: AssetImage(
+                  'assets/images/headshot.jpg',
+                ),
+              ),
             ),
           ],
         ),
