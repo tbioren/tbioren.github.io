@@ -40,48 +40,54 @@ class HomePage extends State<MyApp> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.75,
               height: MediaQuery.of(context).size.height,
-              child: Center(
-                child: Text(
-                  "Thomas Bioren",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.width / 20,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Thomas Bioren",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).size.width / 20,
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             // About
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 100),
-                child: Column(
-                  children: [
-                    Text(
-                      "About Me",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.width / 50,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: Text(
-                        _aboutFile,
-                        textAlign: TextAlign.center,
+            Container(
+              color: const Color.fromARGB(255, 255, 255, 250),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: Column(
+                    children: [
+                      Text(
+                        "About Me",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Colors.black,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 75,
+                          fontSize: MediaQuery.of(context).size.width / 50,
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Text(
+                          _aboutFile,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: MediaQuery.of(context).size.width / 75,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
