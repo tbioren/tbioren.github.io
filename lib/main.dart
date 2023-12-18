@@ -173,10 +173,10 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
       onVisibilityChanged: (VisibilityInfo info) {
         controller.forward();
       },
-      child: Opacity(
-        opacity: animation.value,
-        child: Container(
-          color: const Color.fromARGB(255, 255, 255, 250),
+      child: Container(
+        color: const Color.fromARGB(255, 255, 255, 250),
+        child: Opacity(
+          opacity: animation.value,
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
