@@ -128,51 +128,65 @@ class Footer extends StatelessWidget {
 }
 
 class About extends StatefulWidget {
-  const About({
+  About({
     super.key,
     required String aboutFile,
   }) : _aboutFile = aboutFile;
 
   final String _aboutFile;
-
   @override
   State<About> createState() => _AboutState();
 }
 
 class _AboutState extends State<About> {
+  double _aboutOpacity = 0;
+
+  // TODO: change this to use AnimationController and ScrollController
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 0), () {
+      _aboutOpacity = 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 255, 255, 250),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100),
-          child: Column(
-            children: [
-              Text(
-                "About Me",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width / 50,
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: Text(
-                  widget._aboutFile,
-                  textAlign: TextAlign.center,
+    return AnimatedOpacity(
+      opacity: _aboutOpacity,
+      duration: const Duration(milliseconds: 500),
+      child: Container(
+        color: const Color.fromARGB(255, 255, 255, 250),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: Column(
+              children: [
+                Text(
+                  "About Me",
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.width / 75,
+                    fontSize: MediaQuery.of(context).size.width / 50,
                   ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Text(
+                    widget._aboutFile,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).size.width / 75,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
