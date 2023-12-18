@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
   runApp(const MyApp());
@@ -146,53 +147,66 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> with SingleTickerProviderStateMixin {
-  double _aboutOpacity = 0;
+  late Animation<double> animation;
+  late AnimationController controller;
 
-  // TODO: change this to use AnimationController and ScrollController
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 0), () {
-      _aboutOpacity = 1;
-    });
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 500), vsync: this);
+    // Look up Dart's cascade notation for the ".."
+    // The addListner() has to call setState() in order to update the state
+    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      opacity: _aboutOpacity,
-      duration: const Duration(milliseconds: 500),
-      child: Container(
-        color: const Color.fromARGB(255, 255, 255, 250),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Column(
-              children: [
-                Text(
-                  "About Me",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.width / 50,
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Text(
-                    widget._aboutFile,
-                    textAlign: TextAlign.center,
+    // TODO: Find out what key does
+    // VisibilityDetector detects when the widget is visible and calls
+    // controller.forward()
+    return VisibilityDetector(
+      key: const Key("key"),
+      onVisibilityChanged: (VisibilityInfo info) {
+        controller.forward();
+      },
+      child: Opacity(
+        opacity: animation.value,
+        child: Container(
+          color: const Color.fromARGB(255, 255, 255, 250),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: Column(
+                children: [
+                  Text(
+                    "About Me",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.width / 75,
+                      fontSize: MediaQuery.of(context).size.width / 50,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Text(
+                      widget._aboutFile,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.width / 75,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
