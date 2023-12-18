@@ -61,15 +61,21 @@ class TitleScreen extends StatefulWidget {
   });
 }
 
-class _TitleScreenState extends State<TitleScreen> {
-  double _nameOpacity = 0;
+class _TitleScreenState extends State<TitleScreen>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 0), () {
-      _nameOpacity = 1;
-    });
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.forward();
   }
 
   @override
@@ -80,9 +86,8 @@ class _TitleScreenState extends State<TitleScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedOpacity(
-            opacity: _nameOpacity,
-            duration: const Duration(milliseconds: 500),
+          Opacity(
+            opacity: animation.value,
             child: Text(
               "Thomas Bioren",
               style: TextStyle(
@@ -128,7 +133,7 @@ class Footer extends StatelessWidget {
 }
 
 class About extends StatefulWidget {
-  About({
+  const About({
     super.key,
     required String aboutFile,
   }) : _aboutFile = aboutFile;
@@ -138,7 +143,7 @@ class About extends StatefulWidget {
   State<About> createState() => _AboutState();
 }
 
-class _AboutState extends State<About> {
+class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   double _aboutOpacity = 0;
 
   // TODO: change this to use AnimationController and ScrollController
