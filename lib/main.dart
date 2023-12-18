@@ -182,6 +182,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
             child: Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "About Me",
