@@ -71,6 +71,8 @@ class _TitleScreenState extends State<TitleScreen>
     super.initState();
     controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
+    // Look up Dart's cascade notation for the ".."
+    // The addListner() has to call setState() in order to update the state
     animation = Tween<double>(begin: 0, end: 1).animate(controller)
       ..addListener(() {
         setState(() {});
