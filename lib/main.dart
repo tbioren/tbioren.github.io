@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:website/bodyElement.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,9 +48,12 @@ class HomePage extends State<MyApp> {
             // Title Screen
             const TitleScreen(),
             // About
-            About(aboutFile: _aboutFile),
+            BodyElement("About Me", _aboutFile, child: About()),
             // Skills
-            Skills(skillsFile: _skillsFile),
+            BodyElement("My Skills", _skillsFile, child: Skills()),
+            // Test
+            BodyElement("Placeholder",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis tempus condimentum. Nullam eget elementum quam, eu placerat quam. Proin eu est auctor, sodales est eget, viverra mi. Ut feugiat, tellus scelerisque volutpat molestie, felis justo congue erat, at egestas mi nulla a nisi. Vivamus a ullamcorper risus, eget maximus nulla. Maecenas non pretium urna. Cras at orci et quam sollicitudin bibendum. Morbi imperdiet luctus urna eu volutpat. Sed ullamcorper orci at neque tincidunt vehicula. Aliquam mauris diam, lobortis vel interdum a, commodo at turpis. Etiam suscipit sapien mi, sed pulvinar lorem imperdiet eu. "),
             // Footer
             const Footer(),
           ],
@@ -59,94 +63,16 @@ class HomePage extends State<MyApp> {
   }
 }
 
-// TODO: Convert these to custom widgets that take a text field and a row of children
 class Skills extends StatefulWidget {
-  String _skillsfile;
-
-  Skills({
+  const Skills({
     super.key,
-    required String skillsFile,
-  }) : _skillsfile = skillsFile;
+  });
 
   @override
   State<Skills> createState() => _SkillsState();
 }
 
 class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
-  late Animation<double> animation;
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
-    // Look up Dart's cascade notation for the ".."
-    // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
-      ..addListener(() {
-        setState(() {});
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: VisibilityDetector(
-        key: const Key("Skills Screen"),
-        onVisibilityChanged: (VisibilityInfo info) {
-          controller.forward();
-        },
-        child: Opacity(
-          opacity: animation.value,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "My Skills",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width / 50,
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: Text(
-                  widget._skillsfile,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                    fontSize: MediaQuery.of(context).size.width / 75,
-                  ),
-                ),
-              ),
-              SkillsSpecifics(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SkillsSpecifics extends StatefulWidget {
-  const SkillsSpecifics({
-    super.key,
-  });
-
-  @override
-  State<SkillsSpecifics> createState() => _SkillsSpecificsState();
-}
-
-class _SkillsSpecificsState extends State<SkillsSpecifics>
-    with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
 
@@ -368,93 +294,13 @@ class Footer extends StatelessWidget {
 class About extends StatefulWidget {
   const About({
     super.key,
-    required String aboutFile,
-  }) : _aboutFile = aboutFile;
+  });
 
-  final String _aboutFile;
   @override
   State<About> createState() => _AboutState();
 }
 
 class _AboutState extends State<About> with SingleTickerProviderStateMixin {
-  late Animation<double> animation;
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this);
-    // Look up Dart's cascade notation for the ".."
-    // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
-      ..addListener(() {
-        setState(() {});
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: Find out what key does
-    // VisibilityDetector detects when the widget is visible and calls
-    // controller.forward()
-    return Container(
-      color: const Color.fromARGB(255, 255, 255, 255),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: VisibilityDetector(
-          key: const Key("About"),
-          onVisibilityChanged: (VisibilityInfo info) {
-            controller.forward();
-          },
-          child: Opacity(
-            opacity: animation.value,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "About Me",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.width / 50,
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Text(
-                    widget._aboutFile,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      fontSize: MediaQuery.of(context).size.width / 75,
-                    ),
-                  ),
-                ),
-                const AboutSpecifics(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AboutSpecifics extends StatefulWidget {
-  const AboutSpecifics({
-    super.key,
-  });
-
-  @override
-  State<AboutSpecifics> createState() => _AboutSpecificsState();
-}
-
-class _AboutSpecificsState extends State<AboutSpecifics>
-    with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
   @override
