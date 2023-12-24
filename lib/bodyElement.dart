@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 /// Body element for website
 class BodyElement extends StatefulWidget {
   final String title;
-  final String bodyParagraph;
+  final String paragraphFile;
   final Widget? child;
-  const BodyElement(this.title, this.bodyParagraph, {this.child, super.key});
+  const BodyElement(this.title, this.paragraphFile, {this.child, super.key});
   @override
   State<BodyElement> createState() =>
       // TODO: Figure out what the following line means/does
       // ignore: no_logic_in_create_state
-      _BodyElementState(title, bodyParagraph, child);
+      _BodyElementState(title, paragraphFile, child);
 }
 
 class _BodyElementState extends State<BodyElement>
@@ -35,6 +36,14 @@ class _BodyElementState extends State<BodyElement>
       ..addListener(() {
         setState(() {});
       });
+    loadText();
+  }
+
+  Future<void> loadText() async {
+    String file = await rootBundle.loadString(_bodyParagraph);
+    setState(() {
+      _bodyParagraph = file;
+    });
   }
 
   _BodyElementState(String title, String bodyParagraph, Widget? child) {
@@ -49,7 +58,7 @@ class _BodyElementState extends State<BodyElement>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: VisibilityDetector(
-        key: const Key("Skills Screen"),
+        key: const Key("bodyElement"),
         onVisibilityChanged: (VisibilityInfo info) {
           controller.forward();
         },
