@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class Skills extends StatefulWidget {
-  const Skills({
+class About extends StatefulWidget {
+  const About({
     super.key,
   });
 
   @override
-  State<Skills> createState() => _SkillsState();
+  State<About> createState() => _AboutState();
 }
 
-class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
+class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-
   @override
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     // Look up Dart's cascade notation for the ".."
     // The addListner() has to call setState() in order to update the state
     animation = Tween<double>(begin: 0, end: 1).animate(controller)
@@ -47,13 +46,13 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 // Languages
                 Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(right: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Languages",
+                        "Education",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -63,7 +62,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Javascript\nPython\nJava\nDart\nC#\nC/C++",
+                        "Rose-Hulman Institute of Technology\nUniversity of Washington (non-matriculated)\nBallard High School",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
@@ -76,13 +75,13 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                 ),
                 // Tools
                 Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(right: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Tools",
+                        "Achievements",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -105,13 +104,13 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                 ),
                 // Skills
                 Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(right: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Team Skills",
+                        "Activities",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -121,7 +120,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Agile Development\nDesign\nCommunication",
+                        "Evolvable Hardware Research\nRose-Hulman SmallSat Club\nRose-Hulman Swim Team Member",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,

@@ -1,11 +1,1 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg height="72" viewBox="0 0 72 72" width="72" xmlns="http://www.w3.org/2000/svg" xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
-<desc>CopyRight:SVG Design Editor;
-configurationStart;Unit=smInches;Dpi=96;Division=4;Grid=True;Zoom=4.5;CanvasW=1152;CanvasH=1152;configurationEnd;</desc>
-<g inkscape:label = "emailLogo Default Layer" inkscape:groupmode = "layer" ><g id="group_1">
-<path style="fill:#2196F3;stroke:none; stroke-width:1" d="m8,72l56,0c4.42,0 8,-3.58 8,-8l0,-56c0,-4.42 -3.58,-8 -8,-8l-56,0c-4.42,0 -8,3.58 -8,8l0,56c0,4.42 3.58,8 8,8z" transform = "matrix(1,0,0,1,0,0)" vector-effect="non-scaling-stroke" pen = "1,1" />
-<path style="fill:#FFFFFF;stroke:none; stroke-width:1" d="m18,26.16l0,20.39c0,1.11 0.81,2.01 1.93,2.01l31.81,0c1.12,0 1.93,-0.91 1.93,-2.01l0,-20.39c0,-1.22 -0.73,-2.16 -1.93,-2.16l-31.81,0c-1.25,0 -1.93,0.97 -1.93,2.16m2.93,1.78c0,-0.49 0.3,-0.77 0.77,-0.77c0.29,0 11.85,7.33 12.55,7.76l1.81,1.13c0.57,-0.38 1.15,-0.71 1.74,-1.11c1.21,-0.78 12.01,-7.77 12.31,-7.77c0.48,0 0.77,0.28 0.77,0.77c0,0.52 -1,1.04 -1.65,1.44c-4.1,2.5 -8.2,5.22 -12.26,7.82c-0.24,0.16 -0.7,0.5 -1.04,0.45c-0.38,-0.06 -12.15,-7.62 -14.29,-8.88c-0.32,-0.19 -0.72,-0.36 -0.72,-0.83" transform = "matrix(1,0,0,1,0.0002082189,0.0001031558)" vector-effect="non-scaling-stroke" pen = "1,1" />
-</g>
-</g>
-</svg>
+<?xml version="1.0" ?><svg enable-background="new 0 0 64 64" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Glyph_copy_2"><path d="M63.125,9.977c-0.902-1.321-2.419-2.194-4.131-2.194H5.006c-1.676,0-3.158,0.842-4.067,2.117l31.16,25.982L63.125,9.977z"/><path d="M0.006,14.328v36.889c0,2.75,2.25,5,5,5h53.988c2.75,0,5-2.25,5-5V14.461L32.099,41.09L0.006,14.328z"/></g></svg>

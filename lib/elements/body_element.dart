@@ -57,19 +57,20 @@ class _BodyElementState extends State<BodyElement>
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: VisibilityDetector(
-        key: const Key("bodyElement"),
-        onVisibilityChanged: (VisibilityInfo info) {
-          controller.forward();
-        },
-        child: Opacity(
-          opacity: animation.value,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          VisibilityDetector(
+            key: const Key("BodyElement"),
+            onVisibilityChanged: (VisibilityInfo info) {
+              controller.forward();
+            },
+            child: Opacity(
+              opacity: animation.value,
+              child: Text(
                 _title,
+                textAlign: TextAlign.end,
                 style: TextStyle(
                   color: Colors.black,
                   fontStyle: FontStyle.normal,
@@ -77,23 +78,26 @@ class _BodyElementState extends State<BodyElement>
                   fontSize: MediaQuery.of(context).size.width / 50,
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: Text(
-                  _bodyParagraph,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.normal,
-                    fontSize: MediaQuery.of(context).size.width / 75,
-                  ),
+            ),
+          ),
+          Opacity(
+            opacity: animation.value,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Text(
+                _bodyParagraph,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.normal,
+                  fontSize: MediaQuery.of(context).size.width / 75,
                 ),
               ),
-              _child,
-            ],
+            ),
           ),
-        ),
+          _child,
+        ],
       ),
     );
   }

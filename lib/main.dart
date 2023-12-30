@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:website/bodyElement.dart';
+import 'package:website/elements/body_element.dart';
 
-import 'about.dart';
-import 'skills.dart';
-import 'titleScreen.dart';
+import 'sections/about.dart';
+import 'sections/skills.dart';
+import 'sections/projects.dart';
+import 'sections/title_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,8 +38,11 @@ class HomePage extends State<MyApp> {
             TitleScreen(),
             // About
             BodyElement("About Me", 'data/aboutMe.txt', child: About()),
-            // Skillss
+            // Skills
             BodyElement("My Skills", 'data/skills.txt', child: Skills()),
+            // Projects
+            BodyElement("Projects I've Done", 'data/projects.txt',
+                child: Projects()),
             // Footer
             Footer(),
           ],

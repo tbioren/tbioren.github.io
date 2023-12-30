@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class About extends StatefulWidget {
-  const About({
+class Projects extends StatefulWidget {
+  const Projects({
     super.key,
   });
 
   @override
-  State<About> createState() => _AboutState();
+  State<Projects> createState() => _ProjectsState();
 }
 
-class _AboutState extends State<About> with SingleTickerProviderStateMixin {
+class _ProjectsState extends State<Projects>
+    with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
+
   @override
   void initState() {
     super.initState();
@@ -28,32 +30,31 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: const Key("key0"),
-      onVisibilityChanged: (VisibilityInfo info) {
-        controller.forward();
-      },
-      child: Opacity(
-        opacity: animation.value,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.75,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: VisibilityDetector(
+        key: const Key("Skills Specifics"),
+        onVisibilityChanged: (VisibilityInfo info) {
+          controller.forward();
+        },
+        child: Opacity(
+          opacity: animation.value,
           child: Padding(
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
+            padding: const EdgeInsets.only(top: 16.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // Education
+                // Languages
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.only(right: 50.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Education",
+                        "Languages",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -63,7 +64,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Ballard High School\nUniversity of Washington (non-matriculated)\nRose-Hulman Institute of Technology",
+                        "Javascript\nJava\nDart\nC#\nC/C++",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
@@ -74,15 +75,15 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                // Achievements
+                // Tools
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.only(right: 50.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Achievements",
+                        "Tools",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -92,7 +93,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Lorem\nIpsum\nDolor",
+                        "Flutter\nUnity\nGitHub",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
@@ -103,15 +104,15 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                // Activities
+                // Skills
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.only(right: 50.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Activities",
+                        "Team Skills",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
@@ -121,7 +122,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Rose-Hulman SmallSat Club Member\nRose-Hulman Swim Team Member\nEvolvable Hardware Research\nStudent Pilot",
+                        "Agile Development\nDesign\nCommunication",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
