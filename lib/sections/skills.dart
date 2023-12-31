@@ -75,37 +75,34 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 // Tools
-                Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Tools",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 80,
-                        ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Tools",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.width / 80,
                       ),
-                      Text(
-                        "Flutter\nUnity\nGitHub",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          fontSize: MediaQuery.of(context).size.width / 100,
-                        ),
+                    ),
+                    Text(
+                      "Flutter\nUnity\nGitHub",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
+                        fontSize: MediaQuery.of(context).size.width / 100,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 // Skills
                 Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(left: 50.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
