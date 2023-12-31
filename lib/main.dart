@@ -26,7 +26,7 @@ class HomePage extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print("main");
+    // print("main");
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,

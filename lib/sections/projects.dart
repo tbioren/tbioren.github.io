@@ -22,7 +22,7 @@ class _ProjectsState extends State<Projects> {
   Future<void> loadJson() async {
     String json = await rootBundle.loadString(_file);
     setState(() {
-      debugPrint(_file);
+      // debugPrint(_file);
     });
   }
 
