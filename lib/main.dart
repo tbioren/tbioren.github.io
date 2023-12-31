@@ -38,9 +38,9 @@ class HomePage extends State<MyApp> {
             // Title Screen
             TitleScreen(),
             // About
-            BodyElement("About Me", 'data/aboutMe.txt', child: About()),
+            BodyElement("About Me", 'assets/data/aboutMe.txt', child: About()),
             // Skills
-            BodyElement("My Skills", 'data/skills.txt', child: Skills()),
+            BodyElement("My Skills", 'assets/data/skills.txt', child: Skills()),
             // Projects
             Projects("data/projects.json"),
             // Footer
