@@ -67,7 +67,7 @@ class _TitleScreenState extends State<TitleScreen>
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SvgPicture.asset(
-                      '/images/githubLogo.svg',
+                      'assets/images/githubLogo.svg',
                       width: 50,
                       height: 50,
                     ),
@@ -75,7 +75,7 @@ class _TitleScreenState extends State<TitleScreen>
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SvgPicture.asset(
-                      '/images/linkedinLogo.svg',
+                      'assets/images/linkedinLogo.svg',
                       width: 50,
                       height: 50,
                     ),
@@ -83,7 +83,7 @@ class _TitleScreenState extends State<TitleScreen>
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SvgPicture.asset(
-                      '/images/emailLogo.svg',
+                      'assets/images/emailLogo.svg',
                       width: 50,
                       height: 50,
                     ),

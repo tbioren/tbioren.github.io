@@ -78,39 +78,36 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                 ),
                 // Tools
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Achievements",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width / 80,
-                          ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Achievements",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.bold,
+                          fontSize: MediaQuery.of(context).size.width / 80,
                         ),
-                        Text(
-                          "AP Computer Science (5 Test Score)\nDean't List (2 Quarters)\nFIRST Robotics State Championship",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            fontSize: MediaQuery.of(context).size.width / 100,
-                          ),
+                      ),
+                      Text(
+                        "AP Computer Science (5 Test Score)\nDean't List (2 Quarters)\nFIRST Robotics State Championship",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          fontSize: MediaQuery.of(context).size.width / 100,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 // Skills
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.only(left: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
