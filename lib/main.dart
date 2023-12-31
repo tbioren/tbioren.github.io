@@ -26,6 +26,7 @@ class HomePage extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print("main");
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
@@ -41,8 +42,7 @@ class HomePage extends State<MyApp> {
             // Skills
             BodyElement("My Skills", 'data/skills.txt', child: Skills()),
             // Projects
-            BodyElement("Projects I've Done", 'data/projects.txt',
-                child: Projects()),
+            Projects("data/projects.json"),
             // Footer
             Footer(),
           ],

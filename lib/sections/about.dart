@@ -28,6 +28,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("about");
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       child: VisibilityDetector(
