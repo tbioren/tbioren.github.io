@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:website/elements/project.dart';
+
 class Projects extends StatefulWidget {
   final String path;
   const Projects(this.path, {super.key});
@@ -13,6 +15,7 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   String _file = "";
+  var _projects;
   @override
   void initState() {
     super.initState();
@@ -22,7 +25,10 @@ class _ProjectsState extends State<Projects> {
   Future<void> loadJson() async {
     String encoded = await rootBundle.loadString(_file);
     final decoded = jsonDecode(encoded);
-    setState(() {});
+    setState(() {
+      debugPrint(decoded[3]['title']);
+      _projects = decoded;
+    });
   }
 
   _ProjectsState(String file) {
@@ -33,6 +39,25 @@ class _ProjectsState extends State<Projects> {
   @override
   Widget build(BuildContext context) {
     debugPrint(_file);
-    return Text("Projects");
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: (_projects as List<dynamic>).length,
+        itemBuilder: (BuildContext context, int index) {
+          // return Project(_projects[index]);
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            // TODO: Pass a Project() as the title in ListTile
+            child: ListTile(
+              title: Text(_projects[index]['title']),
+              subtitle: Text(_projects[index]['description']),
+              tileColor: Colors.black12,
+              isThreeLine: true,
+            ),
+          );
+        },
+      ),
+    );
   }
 }

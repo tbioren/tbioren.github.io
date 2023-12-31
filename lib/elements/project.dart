@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 
 /// An individual project tile
 class Project extends StatefulWidget {
-  final String data;
+  final dynamic data;
   const Project(this.data, {super.key});
 
   @override
@@ -14,14 +13,11 @@ class _ProjectState extends State<Project> {
   String title = "";
   String description = "";
   Uri link = Uri();
-  List<String> tags = List<String>.empty(growable: true);
+  List<dynamic> tags = List<dynamic>.empty(growable: true);
 
-  _ProjectState(String data) {
-    debugPrint("project");
-    // final parsedJson = jsonDecode(data);
-    // title = parsedJson['title'];
-    // description = parsedJson['description'];
-    // link = Uri.parse(parsedJson['link']);
+  _ProjectState(dynamic data) {
+    initState();
+    readJson(data);
   }
 
   @override
@@ -30,9 +26,21 @@ class _ProjectState extends State<Project> {
     super.initState();
   }
 
+  void readJson(dynamic data) {
+    title = data['title'];
+    description = data['description'];
+    link = Uri.parse(data['link']);
+    tags = data['tags'];
+  }
+
   @override
   Widget build(BuildContext context) {
-    debugPrint("project");
-    return Text(title);
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.black38,
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
+      child: Text(title),
+    );
   }
 }
