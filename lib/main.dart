@@ -42,7 +42,7 @@ class HomePage extends State<MyApp> {
             // Skills
             BodyElement("My Skills", 'assets/data/skills.txt', child: Skills()),
             // Projects
-            Projects("data/projects.json"),
+            Projects("assets/data/projects.json"),
             // Footer
             Footer(),
           ],

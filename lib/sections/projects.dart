@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,18 +20,19 @@ class _ProjectsState extends State<Projects> {
   }
 
   Future<void> loadJson() async {
-    String json = await rootBundle.loadString(_file);
-    setState(() {
-      // debugPrint(_file);
-    });
+    String encoded = await rootBundle.loadString(_file);
+    final decoded = jsonDecode(encoded);
+    setState(() {});
   }
 
   _ProjectsState(String file) {
     _file = file;
+    initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    debugPrint(_file);
+    return Text("Projects");
   }
 }
