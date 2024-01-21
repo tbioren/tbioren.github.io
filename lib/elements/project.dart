@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 /// An individual project tile
@@ -14,6 +15,7 @@ class _ProjectState extends State<Project> {
   String description = "";
   Uri link = Uri();
   List<dynamic> tags = List<dynamic>.empty(growable: true);
+  String image = "";
 
   _ProjectState(dynamic data) {
     initState();
@@ -31,16 +33,35 @@ class _ProjectState extends State<Project> {
     description = data['description'];
     link = Uri.parse(data['link']);
     tags = data['tags'];
+    image = data['image'];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.black38,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            image,
+            width: MediaQuery.of(context).size.width * 0.1,
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                title,
+                style: const TextStyle(fontSize: 30),
+                maxLines: 1,
+              ),
+              Text(description),
+            ],
+          ),
+        ],
       ),
-      child: Text(title),
     );
   }
 }

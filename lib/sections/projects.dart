@@ -40,21 +40,14 @@ class _ProjectsState extends State<Projects> {
   Widget build(BuildContext context) {
     debugPrint(_file);
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.75,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: (_projects as List<dynamic>).length,
         itemBuilder: (BuildContext context, int index) {
-          // return Project(_projects[index]);
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            // TODO: Pass a Project() as the title in ListTile
-            child: ListTile(
-              title: Text(_projects[index]['title']),
-              subtitle: Text(_projects[index]['description']),
-              tileColor: Colors.black12,
-              isThreeLine: true,
-            ),
+            child: Project(_projects[index]),
           );
         },
       ),

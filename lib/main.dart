@@ -67,7 +67,7 @@ class Footer extends StatelessWidget {
         color: const Color.fromARGB(255, 240, 240, 240),
         child: Center(
           child: Text(
-            "Placeholder Footer",
+            "",
             style: TextStyle(
               color: Colors.black,
               fontStyle: FontStyle.normal,

@@ -63,7 +63,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        "Javascript\nJava\nDart\nC#\nC/C++",
+                        "Java\nJavaScript\nC#\nDart\nC\nARM & RISC-V Assembly",
                         style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
