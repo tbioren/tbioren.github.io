@@ -45,7 +45,7 @@ class _ProjectsState extends State<Projects> {
         shrinkWrap: true,
         itemCount: (_projects as List<dynamic>).length,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
+          return SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
             child: Project(_projects[index]),
           );

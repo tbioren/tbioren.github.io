@@ -11,7 +11,7 @@
         "link": "https://github.com/tbioren/S23_R301",
         "description": "A research project that explores using different genetic selection algorithms and selection methods to mutate a \"chromosome\" to a desired state.",
         "tags": ["Java", "Research", "Rose-Hulman"],
-        "image": "images/EHWsetup.jpg"
+        "image": "images/rhitLogo.png"
     },
     {
         "title": "MENACE",
@@ -32,6 +32,6 @@
         "link": "https://github.com/tbioren/Constellation",
         "description": "An extra-credit assignment I created for the Rose-Hulman CSSE department.",
         "tags": ["Java", "Rose-Hulman"],
-        "image": "images/EHWsetup.jpg"
+        "image": "images/rhitLogo.png"
     }
 ]

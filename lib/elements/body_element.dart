@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -55,7 +56,7 @@ class _BodyElementState extends State<BodyElement>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -82,17 +83,17 @@ class _BodyElementState extends State<BodyElement>
           ),
           Opacity(
             opacity: animation.value,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Text(
-                _bodyParagraph,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.normal,
-                  fontSize: MediaQuery.of(context).size.width / 75,
-                ),
+            child: AutoSizeText(
+              _bodyParagraph,
+              textAlign: TextAlign.justify,
+              maxFontSize: 100,
+              minFontSize: 12,
+              maxLines: 4,
+              style: TextStyle(
+                color: Colors.black,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.normal,
+                fontSize: 24,
               ),
             ),
           ),
