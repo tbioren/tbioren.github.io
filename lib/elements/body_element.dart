@@ -55,51 +55,57 @@ class _BodyElementState extends State<BodyElement>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.8,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          VisibilityDetector(
-            key: const Key("BodyElement"),
-            onVisibilityChanged: (VisibilityInfo info) {
-              controller.forward();
-            },
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        VisibilityDetector(
+          key: const Key("BodyElement"),
+          onVisibilityChanged: (VisibilityInfo info) {
+            controller.forward();
+          },
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.7,
+            // height: MediaQuery.of(context).size.height * 0.4,
             child: Opacity(
               opacity: animation.value,
-              child: Text(
+              child: AutoSizeText(
                 _title,
-                textAlign: TextAlign.end,
-                style: TextStyle(
+                maxFontSize: 100,
+                minFontSize: 24,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
                   color: Colors.black,
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width / 50,
+                  fontSize: 24,
                 ),
               ),
             ),
           ),
-          Opacity(
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.7,
+          // height: MediaQuery.of(context).size.height * 0.4,
+          child: Opacity(
             opacity: animation.value,
             child: AutoSizeText(
               _bodyParagraph,
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.start,
               maxFontSize: 100,
               minFontSize: 12,
               maxLines: 4,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal,
-                fontSize: 24,
+                fontSize: 16,
               ),
             ),
           ),
-          _child,
-        ],
-      ),
+        ),
+        _child,
+      ],
     );
   }
 }

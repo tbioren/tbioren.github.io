@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -30,7 +31,8 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     // debugPrint("about");
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.7,
+      height: MediaQuery.of(context).size.height * 0.8,
       child: VisibilityDetector(
         key: const Key("Skills Specifics"),
         onVisibilityChanged: (VisibilityInfo info) {
@@ -38,8 +40,8 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
         },
         child: Opacity(
           opacity: animation.value,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+          child: const Padding(
+            padding: EdgeInsets.only(top: 16.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -48,93 +50,111 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                 // Languages
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16),
+                    padding: EdgeInsets.only(right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        AutoSizeText(
                           "Education",
+                          maxFontSize: 100,
+                          minFontSize: 12,
+                          maxLines: 1,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Colors.black,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width / 80,
+                            fontSize: 16,
                           ),
                         ),
-                        Text(
-                          "Rose-Hulman Institute of Technology\nUniversity of Washington (non-matriculated)\nBallard High School",
+                        AutoSizeText(
+                          "• Rose-Hulman Institute of Technology\n• University of Washington (non-matriculated)\n• Ballard High School",
+                          maxFontSize: 100,
+                          minFontSize: 8,
+                          maxLines: 6,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            fontSize: MediaQuery.of(context).size.width / 100,
-                          ),
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
                         ),
                       ],
                     ),
                   ),
                 ),
-                // Tools
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Achievements",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 80,
-                        ),
-                      ),
-                      Text(
-                        "AP Computer Science (5 Test Score)\nDean't List (2 Quarters)\nFIRST Robotics State Championship",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          fontSize: MediaQuery.of(context).size.width / 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Skills
+                // Achievements
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 16),
+                    padding: EdgeInsets.only(right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          "Activities",
+                        AutoSizeText(
+                          "Achievements",
+                          maxFontSize: 100,
+                          minFontSize: 12,
+                          maxLines: 1,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Colors.black,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width / 80,
+                            fontSize: 16,
                           ),
                         ),
-                        Text(
-                          "Evolvable Hardware Research\nRose-Hulman SmallSat Club\nRose-Hulman Swim Team Member",
+                        AutoSizeText(
+                          "• AP Computer Science (5 Test Score)\n• Dean't List (2 Quarters)\n• FIRST Robotics State Championship",
+                          maxFontSize: 100,
+                          minFontSize: 8,
+                          maxLines: 6,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            fontSize: MediaQuery.of(context).size.width / 100,
-                          ),
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
                         ),
                       ],
                     ),
                   ),
-                )
+                ),
+                // Activities
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        AutoSizeText(
+                          "Activities",
+                          maxFontSize: 100,
+                          minFontSize: 12,
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        AutoSizeText(
+                          "• Evolvable Hardware Research\n• Rose-Hulman SmallSat Club\n• Rose-Hulman Swim Team Member",
+                          maxFontSize: 100,
+                          minFontSize: 8,
+                          maxLines: 6,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
