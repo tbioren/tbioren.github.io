@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:website/elements/body_element.dart';
+import 'package:website/sections/skills.dart';
 
 import 'sections/about.dart';
-import 'sections/skills.dart';
 import 'sections/projects.dart';
 import 'sections/title_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,9 @@ class HomePage extends State<MyApp> {
     // print("main");
     return MaterialApp(
       theme: ThemeData(
+        textTheme: GoogleFonts.robotoTextTheme(
+          Theme.of(context).textTheme,
+        ),
         scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
@@ -42,7 +46,8 @@ class HomePage extends State<MyApp> {
             // Skills
             BodyElement("My Skills", 'assets/data/skills.txt', child: Skills()),
             // Projects
-            Projects("data/projects.json"),
+            BodyElement("Projects I've Done", 'assets/data/projects.txt',
+                child: Projects('assets/data/projects.json')),
             // Footer
             Footer(),
           ],
@@ -61,12 +66,12 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 5,
+      height: MediaQuery.of(context).size.height / 8,
       child: Container(
-        color: const Color.fromARGB(255, 240, 240, 240),
+        color: Colors.white,
         child: Center(
           child: Text(
-            "Placeholder Footer",
+            "",
             style: TextStyle(
               color: Colors.black,
               fontStyle: FontStyle.normal,

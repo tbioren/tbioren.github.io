@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:website/elements/project.dart';
 
 class Projects extends StatefulWidget {
   final String path;
@@ -11,6 +15,7 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   String _file = "";
+  var _projects;
   @override
   void initState() {
     super.initState();
@@ -18,18 +23,36 @@ class _ProjectsState extends State<Projects> {
   }
 
   Future<void> loadJson() async {
-    String json = await rootBundle.loadString(_file);
+    String encoded = await rootBundle.loadString(_file);
+    final decoded = jsonDecode(encoded);
     setState(() {
-      // debugPrint(_file);
+      debugPrint(decoded[3]['title']);
+      _projects = decoded;
     });
   }
 
   _ProjectsState(String file) {
     _file = file;
+    initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    debugPrint(_file);
+    return SizedBox(
+      width: MediaQuery.of(context).size.width > 800
+          ? 700
+          : MediaQuery.of(context).size.width * 0.8,
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: (_projects as List<dynamic>).length,
+        itemBuilder: (BuildContext context, int index) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(8.0),
+            child: Project(_projects[index]),
+          );
+        },
+      ),
+    );
   }
 }

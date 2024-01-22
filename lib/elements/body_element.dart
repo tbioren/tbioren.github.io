@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -18,21 +19,22 @@ class BodyElement extends StatefulWidget {
 class _BodyElementState extends State<BodyElement>
     with SingleTickerProviderStateMixin {
   late Animation<double> animation;
-  late AnimationController controller;
+  late AnimationController _controller;
 
   String _title = "";
   String _bodyParagraph = "";
   Widget _child = Container();
+  bool _isAnimationPlayed = false;
 
   @override
   void initState() {
     super.initState();
     // Set up the animation controller for fading widgets in
-    controller = AnimationController(
+    _controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
     // Look up Dart's cascade notation for the ".."
     // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+    animation = Tween<double>(begin: 0, end: 1).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
@@ -53,52 +55,65 @@ class _BodyElementState extends State<BodyElement>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _handleVisibilityChange(VisibilityInfo info) {
+    if (info.visibleFraction > 0.5 && !_isAnimationPlayed) {
+      _controller.forward();
+      setState(() {
+        _isAnimationPlayed = true;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          VisibilityDetector(
-            key: const Key("BodyElement"),
-            onVisibilityChanged: (VisibilityInfo info) {
-              controller.forward();
-            },
-            child: Opacity(
-              opacity: animation.value,
-              child: Text(
-                _title,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width / 50,
-                ),
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        SizedBox(
+          width: MediaQuery.of(context).size.width > 800
+              ? 700
+              : MediaQuery.of(context).size.width * 0.8,
+          // height: MediaQuery.of(context).size.height * 0.4,
+          child: AutoSizeText(
+            _title,
+            maxFontSize: 100,
+            minFontSize: 24,
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Colors.black,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+              fontSize: 36,
             ),
           ),
-          Opacity(
-            opacity: animation.value,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Text(
-                _bodyParagraph,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.normal,
-                  fontSize: MediaQuery.of(context).size.width / 75,
-                ),
-              ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width > 800
+              ? 700
+              : MediaQuery.of(context).size.width * 0.8,
+          // height: MediaQuery.of(context).size.height * 0.4,
+          child: AutoSizeText(
+            _bodyParagraph,
+            textAlign: TextAlign.start,
+            maxFontSize: 100,
+            minFontSize: 12,
+            maxLines: 5,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 80, 80, 80),
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.normal,
+              fontSize: 24,
             ),
           ),
-          _child,
-        ],
-      ),
+        ),
+        _child,
+      ],
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -13,7 +14,6 @@ class Skills extends StatefulWidget {
 class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-
   @override
   void initState() {
     super.initState();
@@ -21,7 +21,8 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
         duration: const Duration(milliseconds: 1000), vsync: this);
     // Look up Dart's cascade notation for the ".."
     // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+    // TODO: change beginning to 0 and add VisibilityDetector to reinstate animation
+    animation = Tween<double>(begin: 1, end: 1).animate(controller)
       ..addListener(() {
         setState(() {});
       });
@@ -30,108 +31,126 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: VisibilityDetector(
-        key: const Key("Skills Specifics"),
-        onVisibilityChanged: (VisibilityInfo info) {
-          controller.forward();
-        },
-        child: Opacity(
-          opacity: animation.value,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Languages
-                Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Languages",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 80,
-                        ),
-                      ),
-                      Text(
-                        "Javascript\nJava\nDart\nC#\nC/C++",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          fontSize: MediaQuery.of(context).size.width / 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Tools
-                Column(
+      width: MediaQuery.of(context).size.width > 800
+          ? 700
+          : MediaQuery.of(context).size.width * 0.8,
+      height: MediaQuery.of(context).size.height * 0.8,
+      child: const Padding(
+        padding: EdgeInsets.only(top: 16.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // Languages
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(right: 16),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Tools",
+                    AutoSizeText(
+                      "Languages",
+                      maxFontSize: 100,
+                      minFontSize: 12,
+                      maxLines: 1,
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Colors.black,
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.width / 80,
+                        fontSize: 16,
                       ),
                     ),
-                    Text(
-                      "Flutter\nUnity\nGitHub",
+                    AutoSizeText(
+                      "• Java\n• JavaScript\n• C#\n• Dart\n• C\n• ARM & RISC-V Assembly",
+                      maxFontSize: 100,
+                      minFontSize: 8,
+                      maxLines: 7,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.normal,
-                        fontSize: MediaQuery.of(context).size.width / 100,
-                      ),
-                    ),
-                  ],
-                ),
-                // Skills
-                Padding(
-                  padding: const EdgeInsets.only(left: 50.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Team Skills",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 80,
-                        ),
-                      ),
-                      Text(
-                        "Agile Development\nDesign\nCommunication",
-                        style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
-                          fontSize: MediaQuery.of(context).size.width / 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+            // Tools
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(right: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    AutoSizeText(
+                      "Tools",
+                      maxFontSize: 100,
+                      minFontSize: 12,
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    AutoSizeText(
+                      "• Flutter\n• Unity\n• GitHub",
+                      maxFontSize: 100,
+                      minFontSize: 8,
+                      maxLines: 3,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Team Skills
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(right: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    AutoSizeText(
+                      "Team Skills",
+                      maxFontSize: 100,
+                      minFontSize: 12,
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    AutoSizeText(
+                      "• Agile Development\n• Design\n• Communication",
+                      maxFontSize: 100,
+                      minFontSize: 8,
+                      maxLines: 4,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

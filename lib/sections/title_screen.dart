@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class TitleScreen extends StatefulWidget {
   @override
@@ -24,10 +25,18 @@ class _TitleScreenState extends State<TitleScreen>
         duration: const Duration(milliseconds: 1000), vsync: this);
     // Look up Dart's cascade notation for the ".."
     // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+    // TODO: change beginning to 0 and add VisibilityDetector to reinstate animation
+    animation = Tween<double>(begin: 1, end: 1).animate(controller)
       ..addListener(() {
         setState(() {});
       });
+  }
+
+  Future<void> launch(String url, {bool isNewTab = true}) async {
+    await launchUrl(
+      Uri.parse(url),
+      webOnlyWindowName: isNewTab ? '_blank' : '_self',
+    );
   }
 
   @override
@@ -35,64 +44,72 @@ class _TitleScreenState extends State<TitleScreen>
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.75,
       height: MediaQuery.of(context).size.height,
-      child: VisibilityDetector(
-        key: const Key("TitleScreen"),
-        onVisibilityChanged: (VisibilityInfo info) {
-          controller.forward();
-        },
-        child: Opacity(
-          opacity: animation.value,
-          child: Column(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+          ),
+          Text(
+            "Thomas Bioren",
+            style: TextStyle(
+              color: Colors.black,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 20,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
-              ),
-              Text(
-                "Thomas Bioren",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width / 20,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch('https://github.com/tbioren', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/githubLogo.svg',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch(
+                        'https://www.linkedin.com/in/thomas-bioren-7124b4254/',
+                        isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/linkedinLogo.svg',
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: SvgPicture.asset(
-                      'assets/images/githubLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch('mailto:biorentr@rose-hulman.edu', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/emailLogo.svg',
+                    width: 50,
+                    height: 50,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: SvgPicture.asset(
-                      'assets/images/linkedinLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: SvgPicture.asset(
-                      'assets/images/emailLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
-                  ),
-                ],
-              )
+                ),
+              ),
             ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
