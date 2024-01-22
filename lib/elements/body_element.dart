@@ -19,21 +19,22 @@ class BodyElement extends StatefulWidget {
 class _BodyElementState extends State<BodyElement>
     with SingleTickerProviderStateMixin {
   late Animation<double> animation;
-  late AnimationController controller;
+  late AnimationController _controller;
 
   String _title = "";
   String _bodyParagraph = "";
   Widget _child = Container();
+  bool _isAnimationPlayed = false;
 
   @override
   void initState() {
     super.initState();
     // Set up the animation controller for fading widgets in
-    controller = AnimationController(
+    _controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
     // Look up Dart's cascade notation for the ".."
     // The addListner() has to call setState() in order to update the state
-    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+    animation = Tween<double>(begin: 0, end: 1).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
@@ -54,53 +55,57 @@ class _BodyElementState extends State<BodyElement>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _handleVisibilityChange(VisibilityInfo info) {
+    if (info.visibleFraction > 0.5 && !_isAnimationPlayed) {
+      _controller.forward();
+      setState(() {
+        _isAnimationPlayed = true;
+        debugPrint("updatae animation");
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        VisibilityDetector(
-          key: const Key("BodyElement"),
-          onVisibilityChanged: (VisibilityInfo info) {
-            controller.forward();
-          },
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.7,
-            // height: MediaQuery.of(context).size.height * 0.4,
-            child: Opacity(
-              opacity: animation.value,
-              child: AutoSizeText(
-                _title,
-                maxFontSize: 100,
-                minFontSize: 24,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-              ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.7,
+          // height: MediaQuery.of(context).size.height * 0.4,
+          child: AutoSizeText(
+            _title,
+            maxFontSize: 100,
+            minFontSize: 24,
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Colors.black,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
             ),
           ),
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.7,
           // height: MediaQuery.of(context).size.height * 0.4,
-          child: Opacity(
-            opacity: animation.value,
-            child: AutoSizeText(
-              _bodyParagraph,
-              textAlign: TextAlign.start,
-              maxFontSize: 100,
-              minFontSize: 12,
-              maxLines: 4,
-              style: const TextStyle(
-                color: Colors.black,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
-              ),
+          child: AutoSizeText(
+            _bodyParagraph,
+            textAlign: TextAlign.start,
+            maxFontSize: 100,
+            minFontSize: 12,
+            maxLines: 4,
+            style: const TextStyle(
+              color: Colors.black,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.normal,
+              fontSize: 16,
             ),
           ),
         ),
