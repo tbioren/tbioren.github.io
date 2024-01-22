@@ -76,7 +76,9 @@ class _BodyElementState extends State<BodyElement>
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
+          width: MediaQuery.of(context).size.width > 800
+              ? 700
+              : MediaQuery.of(context).size.width * 0.8,
           // height: MediaQuery.of(context).size.height * 0.4,
           child: AutoSizeText(
             _title,
@@ -87,12 +89,14 @@ class _BodyElementState extends State<BodyElement>
               color: Colors.black,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: 36,
             ),
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
+          width: MediaQuery.of(context).size.width > 800
+              ? 700
+              : MediaQuery.of(context).size.width * 0.8,
           // height: MediaQuery.of(context).size.height * 0.4,
           child: AutoSizeText(
             _bodyParagraph,
@@ -104,7 +108,7 @@ class _BodyElementState extends State<BodyElement>
               color: Colors.black,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
-              fontSize: 16,
+              fontSize: 24,
             ),
           ),
         ),

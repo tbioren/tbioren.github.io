@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:html' as html;
 
 // An indivudal project tile
 class Project extends StatefulWidget {
@@ -13,7 +15,7 @@ class Project extends StatefulWidget {
 class _ProjectState extends State<Project> {
   late String title;
   late String description;
-  late Uri link;
+  late String link;
   late List<dynamic> tags;
   late String image;
   bool isHover = false;
@@ -27,25 +29,36 @@ class _ProjectState extends State<Project> {
   void readJson(dynamic data) {
     title = data['title'];
     description = data['description'];
-    link = Uri.parse(data['link']);
+    link = data['link'];
     tags = data['tags'];
     image = data['image'];
   }
 
+  Future<void> launch(String url, {bool isNewTab = true}) async {
+    await launchUrl(
+      Uri.parse(url),
+      webOnlyWindowName: isNewTab ? '_blank' : '_self',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onHover: (isHovering) {
-        setState(() {
-          isHover = isHovering;
-        });
-        debugPrint("hover: $isHover");
-      },
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.75,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          color: isHover ? Colors.black12 : Colors.white,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      color: isHover ? Colors.black12 : Colors.white,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(0),
+          ),
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        onPressed: () {
+          launch(link, isNewTab: true);
+        },
+        child: Expanded(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

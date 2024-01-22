@@ -31,7 +31,9 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width > 800
+          ? 700
+          : MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.8,
       child: const Padding(
         padding: EdgeInsets.only(top: 16.0),

@@ -40,7 +40,9 @@ class _ProjectsState extends State<Projects> {
   Widget build(BuildContext context) {
     debugPrint(_file);
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.75,
+      width: MediaQuery.of(context).size.width > 800
+          ? 700
+          : MediaQuery.of(context).size.width * 0.8,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: (_projects as List<dynamic>).length,

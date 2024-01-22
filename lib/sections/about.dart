@@ -32,7 +32,9 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     // debugPrint("about");
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width > 800
+          ? 700
+          : MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.8,
       child: const Padding(
         padding: EdgeInsets.only(top: 16.0),
@@ -68,10 +70,11 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                       minFontSize: 8,
                       maxLines: 6,
                       style: TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16),
+                        color: Colors.black,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),
