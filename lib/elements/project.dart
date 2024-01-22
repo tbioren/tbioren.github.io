@@ -87,6 +87,9 @@ class _ProjectState extends State<Project> {
                         minFontSize: 8,
                         maxLines: 4,
                         softWrap: true,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 80, 80, 80),
+                        ),
                       ),
                     ],
                   ),

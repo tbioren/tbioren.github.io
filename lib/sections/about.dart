@@ -70,7 +70,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                       minFontSize: 8,
                       maxLines: 6,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color.fromARGB(255, 80, 80, 80),
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
@@ -107,7 +107,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                       minFontSize: 8,
                       maxLines: 6,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 80, 80, 80),
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
                           fontSize: 16),
@@ -143,7 +143,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                       minFontSize: 8,
                       maxLines: 6,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 80, 80, 80),
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal,
                           fontSize: 16),

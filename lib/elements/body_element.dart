@@ -103,9 +103,9 @@ class _BodyElementState extends State<BodyElement>
             textAlign: TextAlign.start,
             maxFontSize: 100,
             minFontSize: 12,
-            maxLines: 4,
+            maxLines: 5,
             style: const TextStyle(
-              color: Colors.black,
+              color: Color.fromARGB(255, 80, 80, 80),
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
               fontSize: 24,
