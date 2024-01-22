@@ -65,7 +65,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                       "• Java\n• JavaScript\n• C#\n• Dart\n• C\n• ARM & RISC-V Assembly",
                       maxFontSize: 100,
                       minFontSize: 8,
-                      maxLines: 6,
+                      maxLines: 7,
                       style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
@@ -101,7 +101,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                       "• Flutter\n• Unity\n• GitHub",
                       maxFontSize: 100,
                       minFontSize: 8,
-                      maxLines: 6,
+                      maxLines: 3,
                       style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,
@@ -137,7 +137,7 @@ class _SkillsState extends State<Skills> with SingleTickerProviderStateMixin {
                       "• Agile Development\n• Design\n• Communication",
                       maxFontSize: 100,
                       minFontSize: 8,
-                      maxLines: 6,
+                      maxLines: 4,
                       style: TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.normal,

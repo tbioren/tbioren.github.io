@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class TitleScreen extends StatefulWidget {
   @override
@@ -29,6 +30,13 @@ class _TitleScreenState extends State<TitleScreen>
       ..addListener(() {
         setState(() {});
       });
+  }
+
+  Future<void> launch(String url, {bool isNewTab = true}) async {
+    await launchUrl(
+      Uri.parse(url),
+      webOnlyWindowName: isNewTab ? '_blank' : '_self',
+    );
   }
 
   @override
@@ -60,26 +68,43 @@ class _TitleScreenState extends State<TitleScreen>
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(
-                  'assets/images/githubLogo.svg',
-                  width: 50,
-                  height: 50,
+                child: IconButton(
+                  onPressed: () {
+                    launch('https://github.com/tbioren', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/githubLogo.svg',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(
-                  'assets/images/linkedinLogo.svg',
-                  width: 50,
-                  height: 50,
+                child: IconButton(
+                  onPressed: () {
+                    launch(
+                        'https://www.linkedin.com/in/thomas-bioren-7124b4254/',
+                        isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/linkedinLogo.svg',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(
-                  'assets/images/emailLogo.svg',
-                  width: 50,
-                  height: 50,
+                child: IconButton(
+                  onPressed: () {
+                    launch('mailto:biorentr@rose-hulman.edu', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/emailLogo.svg',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
               ),
             ],

@@ -65,7 +65,6 @@ class _BodyElementState extends State<BodyElement>
       _controller.forward();
       setState(() {
         _isAnimationPlayed = true;
-        debugPrint("updatae animation");
       });
     }
   }
