@@ -44,6 +44,7 @@ class _ProjectState extends State<Project> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      height: MediaQuery.of(context).size.height * 0.15,
       duration: const Duration(milliseconds: 250),
       color: isHover ? Colors.black12 : Colors.white,
       child: TextButton(
@@ -58,45 +59,43 @@ class _ProjectState extends State<Project> {
         onPressed: () {
           launch(link, isNewTab: true);
         },
-        child: Expanded(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image.asset(
-                image,
-                width: MediaQuery.of(context).size.width * 0.15,
-                height: MediaQuery.of(context).size.height * 0.15,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      AutoSizeText(
-                        title,
-                        maxFontSize: 48,
-                        minFontSize: 20,
-                        maxLines: 1,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              image,
+              width: MediaQuery.of(context).size.width * 0.15,
+              height: MediaQuery.of(context).size.height * 0.15,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      title,
+                      maxFontSize: 48,
+                      minFontSize: 20,
+                      maxLines: 1,
+                    ),
+                    AutoSizeText(
+                      description,
+                      maxFontSize: 36,
+                      minFontSize: 8,
+                      maxLines: 4,
+                      softWrap: true,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 80, 80, 80),
                       ),
-                      AutoSizeText(
-                        description,
-                        maxFontSize: 36,
-                        minFontSize: 8,
-                        maxLines: 4,
-                        softWrap: true,
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 80, 80, 80),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

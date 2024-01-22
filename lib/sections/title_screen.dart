@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:html' as html;
@@ -51,13 +52,16 @@ class _TitleScreenState extends State<TitleScreen>
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
           ),
-          Text(
+          const AutoSizeText(
             "Thomas Bioren",
+            minFontSize: 24,
+            maxFontSize: 80,
+            maxLines: 1,
             style: TextStyle(
               color: Colors.black,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 20,
+              fontSize: 64,
             ),
           ),
           SizedBox(
