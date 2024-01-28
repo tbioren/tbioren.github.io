@@ -64,6 +64,7 @@ class _TitleScreenState extends State<TitleScreen>
                 minFontSize: 16,
                 maxFontSize: 80,
                 maxLines: 1,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
                   fontStyle: FontStyle.normal,
