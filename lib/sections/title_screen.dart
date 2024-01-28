@@ -59,6 +59,7 @@ class _TitleScreenState extends State<TitleScreen>
               width: MediaQuery.of(context).size.width > 800
                   ? 700
                   : MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.4,
               child: const AutoSizeText(
                 "Thomas Bioren",
                 minFontSize: 16,
@@ -72,9 +73,6 @@ class _TitleScreenState extends State<TitleScreen>
                   fontSize: 64,
                 ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
