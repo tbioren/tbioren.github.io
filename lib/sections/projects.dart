@@ -44,6 +44,7 @@ class _ProjectsState extends State<Projects> {
           ? 700
           : MediaQuery.of(context).size.width * 0.8,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: (_projects as List<dynamic>).length,
         itemBuilder: (BuildContext context, int index) {

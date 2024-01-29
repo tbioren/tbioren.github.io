@@ -27,8 +27,8 @@ class HomePage extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // print("main");
     return MaterialApp(
+      title: 'Thomas Bioren',
       theme: ThemeData(
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
