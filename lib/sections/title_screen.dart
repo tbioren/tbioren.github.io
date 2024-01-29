@@ -47,81 +47,79 @@ class _TitleScreenState extends State<TitleScreen>
           ? 700
           : MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height,
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width > 800
-                  ? 700
-                  : MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: const AutoSizeText(
-                "Thomas Bioren",
-                minFontSize: 16,
-                maxFontSize: 80,
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 64,
-                ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width > 800
+                ? 700
+                : MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: const AutoSizeText(
+              "Thomas Bioren",
+              minFontSize: 16,
+              maxFontSize: 80,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.bold,
+                fontSize: 64,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: IconButton(
-                    onPressed: () {
-                      launch('https://github.com/tbioren', isNewTab: true);
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/images/githubLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch('https://github.com/tbioren', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/githubLogo.svg',
+                    width: 50,
+                    height: 50,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: IconButton(
-                    onPressed: () {
-                      launch(
-                          'https://www.linkedin.com/in/thomas-bioren-7124b4254/',
-                          isNewTab: true);
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/images/linkedinLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch(
+                        'https://www.linkedin.com/in/thomas-bioren-7124b4254/',
+                        isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/linkedinLogo.svg',
+                    width: 50,
+                    height: 50,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: IconButton(
-                    onPressed: () {
-                      launch('mailto:biorentr@rose-hulman.edu', isNewTab: true);
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/images/emailLogo.svg',
-                      width: 50,
-                      height: 50,
-                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IconButton(
+                  onPressed: () {
+                    launch('mailto:biorentr@rose-hulman.edu', isNewTab: true);
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/emailLogo.svg',
+                    width: 50,
+                    height: 50,
                   ),
                 ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
