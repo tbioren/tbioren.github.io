@@ -33,5 +33,12 @@
         "description": "An extra-credit assignment I created for the Rose-Hulman CSSE department.",
         "tags": ["Java", "Rose-Hulman"],
         "image": "assets/images/rhitLogo.png"
+    },
+    {
+        "title": "Accumulator-Based Processor",
+        "link": "https://github.com/tbioren/comp-arch-crusaders",
+        "description": "An accumulator-based processor that I designed and implemented in Verilog for a Computer Architecture class at Rose-Hulman.",
+        "tags": ["Hardware", "Rose-Hulman"],
+        "image": "assets/images/rhitLogo.png"
     }
 ]
