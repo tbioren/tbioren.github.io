@@ -11,6 +11,7 @@ public class ManageDependentsScreen extends JPanel {
     private JScrollPane scrollPane;
     private GridBagConstraints gbc;
     private JList<String> dependentList;
+    private ManageDependentsHelper manager;
 
     // Panel components
     JPanel mainPanel;
@@ -18,6 +19,7 @@ public class ManageDependentsScreen extends JPanel {
     public ManageDependentsScreen() {
         mainPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
+        manager = new ManageDependentsHelper();
 
         // Header
         JLabel header = new JLabel("<html><h1>Manage Your Dependents</h1></html>");
@@ -87,17 +89,7 @@ public class ManageDependentsScreen extends JPanel {
 
         unDeleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    final String sproc = "EXEC UnRemoveDependent @UserID = ?, @Dep = ?";
-                    CallableStatement smt = DbConnectionService.getConnection().prepareCall(sproc);
-                    smt.setInt(1, ScreenController.getInstance().getUser().id);
-                    smt.setString(2, codeField.getText());
-                    smt.execute();
-                }
-                catch(SQLException sqle) {
-//                    sqle.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Un-Deletion Unsuccessful");
-                }
+                manager.unRemove(ScreenController.getInstance().getUser().id, codeField.getText());
                 mainPanel.remove(scrollPane);
                 createScrollPane();
                 mainPanel.revalidate();
@@ -139,31 +131,10 @@ public class ManageDependentsScreen extends JPanel {
     }
     
     private ArrayList<String> getDependents() {
-//        System.out.println(ScreenController.getInstance().getUser());
-        try {
-            final String sproc = "EXEC GetDependents @EmployeeID = ?";
-            CallableStatement smt = DbConnectionService.getConnection().prepareCall(sproc);
-            smt.setInt(1, ScreenController.getInstance().getUser().id);
-//            System.out.println(ScreenController.getInstance().getUser().id);
-            ResultSet rs = smt.executeQuery();
-            ArrayList<String> output = new ArrayList<String>();
-            while (rs.next()) {
-                String name = rs.getString(1);
-                output.add(name);
-//                System.out.println(name);
-            }
-            return output;
-        } catch(Exception e) {}
-        return new ArrayList<String>();
+        return manager.getDependents(ScreenController.getInstance().getUser().id);
     }
 
     private void deleteDependent(String dependent) {
-        try {
-//            System.out.println(dependent);
-            final String sproc = "EXEC RemoveDependent @Username = ?";
-            CallableStatement smt = DbConnectionService.getConnection().prepareCall(sproc);
-            smt.setString(1, dependent);
-            smt.executeQuery();
-        } catch(Exception e) {}
+       manager.deleteDependent(dependent);
     }
 }
