@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.ConnectException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -16,6 +17,7 @@ public class Main {
 		FlatLightLaf.setup();
 		DbConnectionService.connect();
 		System.out.println(DbConnectionService.getConnection());
-		ScreenController.getInstance();
+		ScreenController.getInstance().switchScreen("Login Screen");
+		ScreenController.getInstance().showColor("Register Screen", Color.PINK);
 	}
 }
